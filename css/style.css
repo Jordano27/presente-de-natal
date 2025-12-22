@@ -17,7 +17,8 @@ body {
     height: 100%;
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    background: linear-gradient(135deg, var(--bg1), var(--bg2));
+    /* Usar um único tom de fundo em vez de gradiente */
+    background: var(--bg1);
     color: var(--text)
 }
 
@@ -235,39 +236,256 @@ body {
 }
 
 /* Stories modal styles */
-.story-modal {position:fixed;inset:0;display:none;z-index:10000}
-.story-modal[aria-hidden="false"]{display:block}
-.story-modal__backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px)}
-.story-modal__content{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:420px;max-width:92%;background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));border-radius:14px;padding:12px;box-shadow:0 12px 40px rgba(0,0,0,0.6);display:flex;flex-direction:column;gap:10px}
-.story-modal__close{position:absolute;right:10px;top:8px;background:transparent;border:none;color:var(--text);font-size:20px;cursor:pointer}
-.story-modal__progresses{display:flex;gap:6px;padding:6px}
-.story-modal__progress{flex:1;height:4px;background:rgba(255,255,255,0.12);border-radius:4px;overflow:hidden}
-.story-modal__progress > i{display:block;height:100%;width:0;background:var(--accent1);transition:width linear}
-.story-modal__slides{height:520px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border-radius:8px}
-.story-slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:20px;font-size:28px;color:var(--text);text-align:center;opacity:0;transform:scale(0.98);transition:opacity .35s ease,transform .35s ease}
-.story-slide.active{opacity:1;transform:scale(1)}
-.story-slide img{max-width:100%;max-height:100%;border-radius:8px}
+.story-modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    z-index: 10000
+}
 
-@media (max-width:520px){
-    .story-modal__content{width:340px}
-    .story-modal__slides{height:420px}
+.story-modal[aria-hidden="false"] {
+    display: block
+}
+
+.story-modal__backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px)
+}
+
+.story-modal__content {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 420px;
+    max-width: 92%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+    border-radius: 14px;
+    padding: 12px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.story-modal__close {
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-size: 20px;
+    cursor: pointer
+}
+
+.story-modal__progresses {
+    display: flex;
+    gap: 6px;
+    padding: 6px
+}
+
+.story-modal__progress {
+    flex: 1;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 4px;
+    overflow: hidden
+}
+
+.story-modal__progress>i {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: var(--accent1);
+    transition: width linear
+}
+
+.story-modal__slides {
+    height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px
+}
+
+.story-slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-size: 28px;
+    color: var(--text);
+    text-align: center;
+    opacity: 0;
+    transform: scale(0.98);
+    transition: opacity .35s ease, transform .35s ease
+}
+
+.story-slide.active {
+    opacity: 1;
+    transform: scale(1)
+}
+
+.story-slide img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 8px
+}
+
+/* ensure the inner slide container clips the image so corners are rounded */
+.story-slide__inner {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.story-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
+}
+
+@media (max-width:520px) {
+    .story-modal__content {
+        width: 340px
+    }
+
+    .story-modal__slides {
+        height: 420px
+    }
 }
 
 /* Music player styles */
-.player{display:flex;gap:18px;align-items:center;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:16px;border-radius:12px;margin-top:18px}
-.player__left{flex:0 0 120px}
-.player__cover{width:120px;height:120px;border-radius:10px;object-fit:cover;background:var(--glass);display:block}
-.player__right{flex:1;display:flex;flex-direction:column;gap:10px}
-.player__meta{display:flex;flex-direction:column}
-.player__title{font-weight:800;font-size:18px}
-.player__artist{color:rgba(230,240,234,0.75);font-size:13px}
-.player__controls{display:flex;gap:10px;align-items:center}
-.player__progress{height:8px;background:rgba(255,255,255,0.08);border-radius:8px;overflow:hidden;cursor:pointer}
-.player__progress-filled{height:100%;background:var(--accent1);width:0%;transition:width 0.2s linear}
-.player__times{display:flex;justify-content:space-between;color:rgba(230,240,234,0.65);font-size:12px}
+.player {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    padding: 16px;
+    border-radius: 12px;
+    margin-top: 18px;
+}
 
-@media (max-width:700px){
-    .player{flex-direction:column;align-items:stretch}
-    .player__left{flex:0 0 auto}
-    .player__cover{width:100%;height:200px}
+/* music info overlay inside each story (top-left) */
+.story-music-info {
+    position: absolute;
+    left: 10%;
+    top: 87%;
+    z-index: 5;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.45);
+    padding: 6px 8px;
+    border-radius: 8px
+}
+.story-music-info img {
+    width: 24px;
+   height: 24px;
+    object-fit: cover;
+    border-radius: 6px
+}
+.story-music-meta {
+    display: flex;
+    flex-direction: column
+}
+.story-music-meta .song-title, .story-music-meta .story-music-title {
+    font-weight: 700;
+    font-size: 10px
+}
+.story-music-meta .song-artist, .story-music-meta .story-music-artist {
+    font-size: 7px;
+    color: rgba(230, 240, 234, 0.8)
+}
+
+.player__left {
+    flex: 0 0 120px
+}
+
+.player__cover {
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    object-fit: cover;
+    background: var(--glass);
+    display: block
+}
+
+.player__right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.player__meta {
+    display: flex;
+    flex-direction: column
+}
+
+.player__title {
+    font-weight: 800;
+    font-size: 18px
+}
+
+.player__artist {
+    color: rgba(230, 240, 234, 0.75);
+    font-size: 13px
+}
+
+.player__controls {
+    display: flex;
+    gap: 10px;
+    align-items: center
+}
+
+.player__progress {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer
+}
+
+.player__progress-filled {
+    height: 100%;
+    background: var(--accent1);
+    width: 0%;
+    transition: width 0.2s linear
+}
+
+.player__times {
+    display: flex;
+    justify-content: space-between;
+    color: rgba(230, 240, 234, 0.65);
+    font-size: 12px
+}
+
+@media (max-width:700px) {
+    .player {
+        flex-direction: column;
+        align-items: stretch
+    }
+
+    .player__left {
+        flex: 0 0 auto
+    }
+
+    .player__cover {
+        width: 100%;
+        height: 200px
+    }
 }
