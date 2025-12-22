@@ -32,9 +32,19 @@
             <!-- Memórias renderizadas por JS -->
         </section>
 
-        <div class="footer">Feito com 💚 — personalize os dados em <code>js/main.js</code></div>
-    </div>
+        <div class="footer">Feito para meu amor ❤️ - Retrospectiva 2025</div>
+        </div>
 
-    <script src="js/main.js"></script>
-</body>
-</html>
+        <!-- Stories modal (inicia escondido) -->
+        <div id="storyModal" class="story-modal" aria-hidden="true">
+            <div class="story-modal__backdrop" data-close></div>
+            <div class="story-modal__content" role="dialog" aria-modal="true">
+                <button class="story-modal__close" aria-label="Fechar" data-close>✕</button>
+                <div class="story-modal__progresses" id="storyProgresses"></div>
+                <div class="story-modal__slides" id="storySlides"></div>
+            </div>
+        </div>
+
+        <script src="js/main.js"></script>
+    </body>
+    </html>
