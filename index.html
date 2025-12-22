@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossa Retrospectiva</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title">
+                <h1>Nossa Retrospectiva <span id="year"></span></h1>
+                <p>Um resumo carinhoso do nosso ano juntos.</p>
+            </div>
+            <div class="cta">
+                <button id="celebrate" class="btn">Celebrar 🎉</button>
+                <button id="share" class="small-btn">Compartilhar</button>
+            </div>
+        </div>
+
+        <section class="hero">
+            <div class="cover">❤️</div>
+            <div class="summary">
+                <h2>Obrigado por cada momento</h2>
+                <p>Relembre os destaques do ano — os dias, os sorrisos e as memórias que ficaram.</p>
+                <div class="stats" id="stats" aria-live="polite"></div>
+            </div>
+        </section>
+
+        <section class="cards" id="memories">
+            <!-- Memórias renderizadas por JS -->
+        </section>
+
+        <div class="footer">Feito com 💚 — personalize os dados em <code>js/main.js</code></div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
