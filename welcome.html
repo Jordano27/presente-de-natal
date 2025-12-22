@@ -1,24 +1,76 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Retrospectiva 2025</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossa Retrospectiva</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-
-<body class="welcome-page">
-    <div class="wrap">
-        <div class="card" id="card">
-            <div class="logo">Retrospectiva</div>
-            <div class="welcome" id="welcomeText">Seja bem vindo(a) à Retrospectiva 2025</div>
-            <div class="sub" id="subText">Um pequeno presente com memórias, música e carinho.</div>
-            <div class="spinner" id="spinner"></div>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title">
+                <h1>Nossa Retrospectiva <span id="year"></span></h1>
+                <p>Um resumo carinhoso do nosso ano juntos.</p>
+            </div>
+            <div class="cta">
+                <button id="celebrate" class="btn">Memórias</button>
+                <button id="share" class="small-btn">Compartilhar</button>
+            </div>
         </div>
-    </div>
 
-    <script src="js/main.js"></script>
-</body>
+        <section class="hero">
+            <div class="cover">❤️</div>
+            <div class="summary">
+                <h2>Obrigado por cada momento</h2>
+                <p>Relembre os destaques do ano, os sorrisos e as memórias que ficaram.</p>
+                <div class="stats" id="stats" aria-live="polite"></div>
+            </div>
+        </section>
 
-</html>
+        <section class="cards" id="memories">
+            <!-- Memórias renderizadas por JS -->
+        </section>
+
+        <!-- Player de música -->
+        <section class="player">
+            <div class="player__left">
+                <img id="playerCover" src="capas_albuns/entregador_de_flor.jpg" alt="Capa" class="player__cover">
+            </div>
+            <div class="player__right">
+                <div class="player__meta">
+                    <div id="playerTitle" class="player__title">Nome da Música</div>
+                    <div id="playerArtist" class="player__artist">Artista</div>
+                </div>
+                <div class="player__controls">
+                    <button id="playerPrev" class="small-btn" aria-label="Anterior">◀◀</button>
+                    <button id="playerPlay" class="btn" aria-label="Tocar/Pausar"></button>
+                    <button id="playerNext" class="small-btn" aria-label="Próxima">▶▶</button>
+                </div>
+                <div class="player__progress" id="playerProgress">
+                    <div class="player__progress-filled" id="playerProgressFill" style="width:0%"></div>
+                </div>
+                <div class="player__times">
+                    <span id="playerTimeCurrent">0:00</span>
+                    <span id="playerTimeDuration">0:00</span>
+                </div>
+                <!-- elemento de áudio (arquivo local). Substitua src com seus arquivos em audio/ -->
+                <audio id="audioPlayer" preload="metadata"></audio>
+            </div>
+        </section>
+
+        <div class="footer">Feito para meu amor ❤️ - Retrospectiva 2025</div>
+        </div>
+
+        <div id="storyModal" class="story-modal" aria-hidden="true">
+            <div class="story-modal__backdrop" data-close></div>
+            <div class="story-modal__content" role="dialog" aria-modal="true">
+                <button class="story-modal__close" aria-label="Fechar" data-close>✕</button>
+                <div class="story-modal__progresses" id="storyProgresses"></div>
+                <div class="story-modal__slides" id="storySlides"></div>
+            </div>
+        </div>
+
+        <script src="js/main.js"></script>
+    </body>
+    </html>
