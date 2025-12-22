@@ -278,10 +278,13 @@ function prevStory(){
 /* ---------------- end stories ---------------- */
 
 /* ---------------- Music Player ---------------- */
-// Playlist - substitua os src por arquivos reais dentro da pasta `audio/` e capas em `images/`
+// Playlist gerada a partir da pasta `audios/` no projeto.
+// Atualize os títulos/artistas se desejar; os arquivos MP3 foram detectados automaticamente.
 const playlist = [
-    { src: 'audio/track1.mp3', title: 'Nossa Canção', artist: 'Nós Dois', cover: 'images/cover-placeholder.jpg' },
-    { src: 'audio/track2.mp3', title: 'Noite de Praia', artist: 'Nós', cover: 'images/cover2.jpg' }
+    { src: 'audios/Diego & Victor Hugo - Entregador de Flor (Ao Vivo em Brasília) - DiegoEVictorHugoVEVO (youtube).mp3', title: 'Entregador de Flor (Ao Vivo)', artist: 'Diego & Victor Hugo', cover: 'capas_albuns/entregador_de_flor.jpg' },
+    { src: 'audios/Jorge & Mateus - Te Amo Com a Voz Rouca - [Como Sempre Feito Nunca] (Áudio Oficial) - Jorge & Mateus Oficial (youtube).mp3', title: 'Te Amo Com a Voz Rouca', artist: 'Jorge & Mateus', cover: 'capas_albuns/te_amo_com_a_voz_rouca.jpg' },
+    { src: 'audios/Taylor Swift - The Fate of Ophelia - LatinHype (youtube).mp3', title: 'The Fate of Ophelia', artist: 'Taylor Swift', cover: 'capas_albuns/the_fate_of_ophelia.jpeg' },
+    { src: 'audios/Wood - Taylor Swift (youtube).mp3', title: 'Wood', artist: 'Taylor Swift', cover: 'capas_albuns/wood.jpg' }
 ];
 
 const player = {
