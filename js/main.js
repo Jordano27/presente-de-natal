@@ -277,6 +277,106 @@ function prevStory(){
 
 /* ---------------- end stories ---------------- */
 
+/* ---------------- Music Player ---------------- */
+// Playlist - substitua os src por arquivos reais dentro da pasta `audio/` e capas em `images/`
+const playlist = [
+    { src: 'audio/track1.mp3', title: 'Nossa Canção', artist: 'Nós Dois', cover: 'images/cover-placeholder.jpg' },
+    { src: 'audio/track2.mp3', title: 'Noite de Praia', artist: 'Nós', cover: 'images/cover2.jpg' }
+];
+
+const player = {
+    audio: null,
+    index: 0,
+    isReady: false
+};
+
+function formatTime(seconds){
+    if (!seconds || isNaN(seconds)) return '0:00';
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60);
+    return `${m}:${s.toString().padStart(2,'0')}`;
+}
+
+function loadTrack(i){
+    if (i < 0) i = playlist.length - 1;
+    if (i >= playlist.length) i = 0;
+    player.index = i;
+    const track = playlist[i];
+    const audio = document.getElementById('audioPlayer');
+    const cover = document.getElementById('playerCover');
+    const title = document.getElementById('playerTitle');
+    const artist = document.getElementById('playerArtist');
+    audio.src = track.src;
+    title.textContent = track.title;
+    artist.textContent = track.artist;
+    cover.src = track.cover || 'images/cover-placeholder.jpg';
+    player.audio = audio;
+}
+
+function initPlayer(){
+    const audio = document.getElementById('audioPlayer');
+    if (!audio) return;
+    player.audio = audio;
+    loadTrack(0);
+
+    const btnPlay = document.getElementById('playerPlay');
+    const btnNext = document.getElementById('playerNext');
+    const btnPrev = document.getElementById('playerPrev');
+    const progress = document.getElementById('playerProgress');
+    const progressFill = document.getElementById('playerProgressFill');
+    const timeCurrent = document.getElementById('playerTimeCurrent');
+    const timeDuration = document.getElementById('playerTimeDuration');
+
+    btnPlay.addEventListener('click', ()=>{
+        if (audio.paused) { audio.play(); btnPlay.textContent = 'Pausar'; }
+        else { audio.pause(); btnPlay.textContent = 'Play'; }
+    });
+    btnNext.addEventListener('click', ()=>{ nextTrack(); });
+    btnPrev.addEventListener('click', ()=>{ prevTrack(); });
+
+    // atualizar progress
+    audio.addEventListener('timeupdate', ()=>{
+        if (!audio.duration) return;
+        const pct = (audio.currentTime / audio.duration) * 100;
+        progressFill.style.width = pct + '%';
+        timeCurrent.textContent = formatTime(audio.currentTime);
+        timeDuration.textContent = formatTime(audio.duration);
+    });
+    // quando terminar, vai para próxima
+    audio.addEventListener('ended', ()=>{ nextTrack(); });
+
+    // click para seek
+    progress.addEventListener('click', (e)=>{
+        const rect = progress.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const pct = x / rect.width;
+        if (audio.duration) audio.currentTime = pct * audio.duration;
+    });
+
+    // quando metadata carregar, atualizar duração
+    audio.addEventListener('loadedmetadata', ()=>{
+        timeDuration.textContent = formatTime(audio.duration);
+    });
+}
+
+function nextTrack(){
+    const next = (player.index + 1) % playlist.length;
+    const wasPlaying = !player.audio.paused;
+    loadTrack(next);
+    if (wasPlaying) player.audio.play();
+    document.getElementById('playerPlay').textContent = wasPlaying ? 'Pausar' : 'Play';
+}
+
+function prevTrack(){
+    const prev = (player.index - 1 + playlist.length) % playlist.length;
+    const wasPlaying = !player.audio.paused;
+    loadTrack(prev);
+    if (wasPlaying) player.audio.play();
+    document.getElementById('playerPlay').textContent = wasPlaying ? 'Pausar' : 'Play';
+}
+
+/* ---------------- end Music Player ---------------- */
+
 // Confetti simples com elementos DOM
 function burstConfetti(count = 30) {
     const colors = ['#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF', '#B388EB'];
@@ -307,6 +407,9 @@ function setup() {
     renderMemories();
     // Ao clicar em Celebrar: abre o modal de stories e dá um burst de confete
     $('#celebrate').addEventListener('click', () => { burstConfetti(30); openStoriesModal(); });
+
+    // inicializa o player de áudio
+    initPlayer();
 
     // botão de compartilhar (se suportado)
     $('#share').addEventListener('click', async () => {

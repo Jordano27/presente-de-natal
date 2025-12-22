@@ -252,3 +252,22 @@ body {
     .story-modal__content{width:340px}
     .story-modal__slides{height:420px}
 }
+
+/* Music player styles */
+.player{display:flex;gap:18px;align-items:center;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:16px;border-radius:12px;margin-top:18px}
+.player__left{flex:0 0 120px}
+.player__cover{width:120px;height:120px;border-radius:10px;object-fit:cover;background:var(--glass);display:block}
+.player__right{flex:1;display:flex;flex-direction:column;gap:10px}
+.player__meta{display:flex;flex-direction:column}
+.player__title{font-weight:800;font-size:18px}
+.player__artist{color:rgba(230,240,234,0.75);font-size:13px}
+.player__controls{display:flex;gap:10px;align-items:center}
+.player__progress{height:8px;background:rgba(255,255,255,0.08);border-radius:8px;overflow:hidden;cursor:pointer}
+.player__progress-filled{height:100%;background:var(--accent1);width:0%;transition:width 0.2s linear}
+.player__times{display:flex;justify-content:space-between;color:rgba(230,240,234,0.65);font-size:12px}
+
+@media (max-width:700px){
+    .player{flex-direction:column;align-items:stretch}
+    .player__left{flex:0 0 auto}
+    .player__cover{width:100%;height:200px}
+}
