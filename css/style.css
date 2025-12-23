@@ -410,7 +410,7 @@ body {
 .story-music-info {
     position: absolute;
     left: 10%;
-    top: 87%;
+    top: 84%;
     z-index: 5;
     display: flex;
     gap: 8px;
