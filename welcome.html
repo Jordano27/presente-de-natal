@@ -14,7 +14,7 @@
                 <p>Um resumo carinhoso do nosso ano juntos.</p>
             </div>
             <div class="cta">
-                <button id="celebrate" class="btn">Memórias</button>
+                <button id="celebrate" class="btn"></button>
                 <button id="share" class="small-btn">Compartilhar</button>
             </div>
         </div>
@@ -34,6 +34,9 @@
 
         <!-- Player de música -->
         <section class="player">
+            <div class="player__heading">
+                <h3>Músicas do nosso ano:</h3>
+            </div>
             <div class="player__left">
                 <img id="playerCover" src="capas_albuns/entregador_de_flor.jpg" alt="Capa" class="player__cover">
             </div>
@@ -44,7 +47,7 @@
                 </div>
                 <div class="player__controls">
                     <button id="playerPrev" class="small-btn" aria-label="Anterior">◀◀</button>
-                    <button id="playerPlay" class="btn" aria-label="Tocar/Pausar"></button>
+                    <button id="playerPlay" class="btn-play" aria-label="Tocar/Pausar"></button>
                     <button id="playerNext" class="small-btn" aria-label="Próxima">▶▶</button>
                 </div>
                 <div class="player__progress" id="playerProgress">
@@ -58,8 +61,7 @@
                 <audio id="audioPlayer" preload="metadata"></audio>
             </div>
         </section>
-
-        <div class="footer">Feito para meu amor ❤️ - Retrospectiva 2025</div>
+    <div class="footer">Feito para meu amor ❤️ - Retrospectiva 2025</div>
         </div>
 
         <div id="storyModal" class="story-modal" aria-hidden="true">

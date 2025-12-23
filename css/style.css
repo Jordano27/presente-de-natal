@@ -57,14 +57,19 @@ body {
 }
 
 .btn {
-    background: var(--accent1);
     color: #042014;
-    border: none;
-    padding: 10px 14px;
-    border-radius: 999px;
     font-weight: 700;
     cursor: pointer;
-    box-shadow: 0 6px 18px rgba(13, 85, 40, 0.18)
+    box-shadow: 0 6px 18px rgba(13, 85, 40, 0.18);
+    border: 3px solid transparent; /* reserve space for the gradient border */
+    border-radius: 999px;
+    padding: 10px 14px;
+    /* layered backgrounds: first layer is the interior image, second is the gradient used as the "border" */
+    background-image: url('../imagens/fotoperfil.jpeg'), linear-gradient(135deg, #7b4df3, #1db954);
+    background-origin: padding-box, border-box;
+    background-clip: padding-box, border-box;
+    background-size: cover, 100% 100%;
+    background-position: center, center;
 }
 
 .small-btn {
@@ -74,6 +79,19 @@ body {
     border-radius: 999px;
     color: var(--text);
     cursor: pointer
+}
+
+
+.btn-play {
+    border-radius: 999px;
+    padding: 8px 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff; /* white background as requested */
+    color: #042014; /* dark icon color (SVG uses currentColor) */
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 6px 18px rgba(13,85,40,0.06);
 }
 
 .hero {
@@ -377,6 +395,15 @@ body {
     padding: 16px;
     border-radius: 12px;
     margin-top: 18px;
+    flex-wrap: wrap;
+}
+.player__heading{
+    width: 100%;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    padding: 6px 8px;
+    border-radius: 8px
 }
 
 /* music info overlay inside each story (top-left) */
@@ -540,6 +567,18 @@ body {
 @keyframes spin{ to{ transform:rotate(360deg) } }
 
 .welcome-page .controls{ display:flex; gap:10px; margin-top:8px }
-.welcome-page .btn{ background:var(--accent1); color:#042014; border:none; padding:10px 14px; border-radius:999px; font-weight:700; cursor:pointer }
+.welcome-page .btn{
+    color: #042014;
+    font-weight: 700;
+    cursor: pointer;
+    border: 3px solid transparent;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background-image: url('../imagens/fotoperfil.jpeg'), linear-gradient(135deg, #7b4df3, #1db954);
+    background-origin: padding-box, border-box;
+    background-clip: padding-box, border-box;
+    background-size: cover, 100% 100%;
+    background-position: center, center;
+}
 .welcome-page .ghost{ background:transparent; border:1px solid rgba(255,255,255,0.08); color:var(--text); padding:8px 12px; border-radius:999px; cursor:pointer }
 .welcome-page .credit{ font-size:12px; color:rgba(230,240,234,0.6); margin-top:12px }
